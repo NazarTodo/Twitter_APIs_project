@@ -4,6 +4,7 @@ import ssl
 import json
 # https://apps.twitter.com/
 # Create App and get the four strings, put them in hidden.py
+# keys are currently deactivated
 
 
 # Ignore SSL certificate errors
@@ -13,6 +14,11 @@ ctx.verify_mode = ssl.CERT_NONE
 
 
 def file_acess():
+    """
+    This function reads a json file and lets the user
+    choose a direction in the file and returns information which user chose.
+    ()-> dict/str/int/bool
+    """
     url = twurl.augment(TWITTER_URL, {'screen_name': acct, 'count': '100'})
     connection = urllib.request.urlopen(url, context=ctx)
     data = connection.read().decode()
@@ -43,6 +49,3 @@ if __name__ == '__main__':
     TWITTER_URL = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
     acct = input('Enter Twitter Account:')
     print(file_acess())
-
-
-
